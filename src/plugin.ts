@@ -38,5 +38,4 @@ const configs = {
 
 Object.assign(plugin.configs, configs);
 
-
 export default plugin;

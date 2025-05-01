@@ -150,51 +150,6 @@ const getMultilineExport = (node: TSESTree.ExportNamedDeclaration) => {
     ].join('\n');
 };
 
-// const getLongestLiteralImportLength = (node: TSESTree.ImportDeclaration) => {
-//     const ast = getImportAst(node);
-//     const literals: number[] = [];
-
-//     literals.push(`} from '${ast.source.value}';`.length);
-
-//     ast.specifiers.forEach((clause) => {
-//         switch (true) {
-//             case t.isImportSpecifier(clause): {
-//                 const original = (
-//                     t.isStringLiteral(clause.imported)
-//                         ? clause.imported.value
-//                         : clause.imported.name
-//                 );
-
-//                 const local = clause.local.name;
-
-//                 if (original !== local) {
-//                     literals.push(
-//                         `${padded(`${original} as ${local}`)},`.length,
-//                     );
-//                     break;
-//                 }
-
-//                 literals.push(original.length);
-//                 break;
-//             }
-
-//             case t.isImportDefaultSpecifier(clause): {
-//                 literals.push(clause.local.name.length);
-//                 break;
-//             }
-
-//             default: {
-//                 never('leaked import specifier');
-//             }
-//         }
-//     });
-
-//     const biggest = literals.sort(sortFns.descending)[0];
-//     invariant(biggest !== undefined);
-
-//     return biggest;
-// };
-
 export const ruleVisitors: RuleVisitors = (context) => {
     const getIsMultiline = (node: TSESTree.Node) => {
         return context.sourceCode.getText(node).split('\n').length > 1;

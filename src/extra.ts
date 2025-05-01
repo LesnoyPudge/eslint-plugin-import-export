@@ -1,5 +1,6 @@
 import { ESLintUtils, TSESLint } from '@typescript-eslint/utils';
-import { name, version } from '../generated/package';
+import { name, version } from './package';
+
 
 
 export const createRule = ESLintUtils.RuleCreator(() => {

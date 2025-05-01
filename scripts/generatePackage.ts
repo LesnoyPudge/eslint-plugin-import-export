@@ -4,7 +4,7 @@ import * as v from 'valibot';
 
 
 const main = () => {
-    const pathToFile = path.resolve(process.cwd(), 'generated/package.ts');
+    const pathToFile = path.resolve(process.cwd(), 'src/package.ts');
 
     const pkg = v.parse(v.object({
         name: v.string(),
