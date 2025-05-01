@@ -1,0 +1,25 @@
+{
+    "name": "@lesnoypudge/eslint-plugin-import-export",
+    "license": "ISC",
+    "author": "LesnoyPudge",
+    "description": "lesnoypudge's eslint-plugin-import-export",
+    "version": "1.0.0",
+    "keywords": [
+        "lesnoypudge",
+        "eslint-plugin",
+        "import-export"
+    ],
+    "main": "build/index.js",
+    "types": "build/index.d.ts",
+    "type": "module",
+    "files": [
+        "build"
+    ],
+    "scripts": {
+        "publish:npm": "npm publish --access public",
+        "deploy": "git add . && git commit -m 'update' && git push && git status",
+        "build": "vite build",
+        "test:check": "",
+        "prepublishOnly": "npm run type:check && npm run test:check && npm run build"
+    }
+}
