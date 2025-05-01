@@ -21,5 +21,16 @@
         "build": "vite build",
         "test:check": "",
         "prepublishOnly": "npm run type:check && npm run test:check && npm run build"
+    },
+    "devDependencies": {
+        "@lesnoypudge/builder": "^5.0.1",
+        "@lesnoypudge/eslint-config": "^11.0.1",
+        "@lesnoypudge/formatter-config": "^8.0.0",
+        "@lesnoypudge/types-global-base": "^4.0.0",
+        "@lesnoypudge/types-global-node": "^1.0.1",
+        "@lesnoypudge/types-utils-base": "^3.5.0",
+        "tsx": "^4.19.4",
+        "typescript": "^5.8.3",
+        "vite": "^6.3.4"
     }
 }
