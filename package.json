@@ -3,14 +3,16 @@
     "license": "ISC",
     "author": "LesnoyPudge",
     "description": "lesnoypudge's eslint-plugin-import-export",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "keywords": [
         "lesnoypudge",
-        "eslint-plugin",
-        "import-export"
+        "import-export",
+        "eslint",
+        "eslintplugin",
+        "eslint-plugin"
     ],
-    "main": "build/index.js",
-    "types": "build/index.d.ts",
+    "main": "build/plugin.js",
+    "types": "build/plugin.d.ts",
     "type": "module",
     "files": [
         "build"
@@ -19,18 +21,33 @@
         "publish:npm": "npm publish --access public",
         "deploy": "git add . && git commit -m 'update' && git push && git status",
         "build": "vite build",
-        "test:check": "",
+        "type:check": "tsc --noEmit -p tsconfig.node.build.json",
+        "test:check": "tsx --tsconfig ./tsconfig.node.build.json ./tests/rule.test.ts",
         "prepublishOnly": "npm run type:check && npm run test:check && npm run build"
     },
     "devDependencies": {
         "@lesnoypudge/builder": "^5.0.1",
-        "@lesnoypudge/eslint-config": "^11.0.1",
+        "@lesnoypudge/eslint-config": "^11.0.2",
         "@lesnoypudge/formatter-config": "^8.0.0",
         "@lesnoypudge/types-global-base": "^4.0.0",
         "@lesnoypudge/types-global-node": "^1.0.1",
         "@lesnoypudge/types-utils-base": "^3.5.0",
+        "@types/js-beautify": "^1.14.3",
+        "@typescript-eslint/rule-tester": "^8.31.1",
+        "eslint": "^9.25.1",
         "tsx": "^4.19.4",
         "typescript": "^5.8.3",
         "vite": "^6.3.4"
+    },
+    "dependencies": {
+        "@babel/generator": "^7.27.1",
+        "@babel/types": "^7.27.1",
+        "@lesnoypudge/utils": "^19.5.2",
+        "@typescript-eslint/utils": "^8.31.1",
+        "js-beautify": "^1.15.4",
+        "valibot": "^1.0.0"
+    },
+    "peerDependencies": {
+        "eslint": ">=9.0.0"
     }
 }
