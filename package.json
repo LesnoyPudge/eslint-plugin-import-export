@@ -41,6 +41,7 @@
     "dependencies": {
         "@babel/generator": "^7.27.1",
         "@babel/types": "^7.27.1",
+        "@lesnoypudge/utils": "^19.5.2",
         "@typescript-eslint/parser": "^8.31.1",
         "@typescript-eslint/utils": "^8.31.1",
         "valibot": "^1.0.0"
