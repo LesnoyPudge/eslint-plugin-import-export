@@ -3,7 +3,7 @@
     "license": "ISC",
     "author": "LesnoyPudge",
     "description": "lesnoypudge's eslint-plugin-import-export",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "keywords": [
         "lesnoypudge",
         "import-export",
@@ -32,7 +32,6 @@
         "@lesnoypudge/types-global-base": "^4.0.0",
         "@lesnoypudge/types-global-node": "^1.0.1",
         "@lesnoypudge/types-utils-base": "^3.5.0",
-        "@types/js-beautify": "^1.14.3",
         "@typescript-eslint/rule-tester": "^8.31.1",
         "eslint": "^9.25.1",
         "tsx": "^4.19.4",
@@ -42,9 +41,8 @@
     "dependencies": {
         "@babel/generator": "^7.27.1",
         "@babel/types": "^7.27.1",
-        "@lesnoypudge/utils": "^19.5.2",
+        "@typescript-eslint/parser": "^8.31.1",
         "@typescript-eslint/utils": "^8.31.1",
-        "js-beautify": "^1.15.4",
         "valibot": "^1.0.0"
     },
     "peerDependencies": {
