@@ -4,6 +4,7 @@
         "./*",
         "./src/**/*",
         "./tests/**/*",
+        "./scripts/**/*",
         "node_modules/@types",
     ],
     "exclude": [],

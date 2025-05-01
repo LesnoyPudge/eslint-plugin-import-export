@@ -3,7 +3,7 @@
     "license": "ISC",
     "author": "LesnoyPudge",
     "description": "lesnoypudge's eslint-plugin-import-export",
-    "version": "1.1.1",
+    "version": "1.1.2",
     "keywords": [
         "lesnoypudge",
         "import-export",
@@ -18,12 +18,13 @@
         "build"
     ],
     "scripts": {
+        "scripts:generate": "tsx ./scripts/generatePackage.ts",
         "publish:npm": "npm publish --access public",
         "deploy": "git add . && git commit -m 'update' && git push && git status",
         "build": "vite build",
         "type:check": "tsc --noEmit -p tsconfig.node.build.json",
         "test:check": "tsx --tsconfig ./tsconfig.node.build.json ./tests/rule.test.ts",
-        "prepublishOnly": "npm run type:check && npm run test:check && npm run build"
+        "prepublishOnly": "npm run scripts:generate && npm run type:check && npm run test:check && npm run build"
     },
     "devDependencies": {
         "@lesnoypudge/builder": "^5.0.1",
@@ -36,6 +37,7 @@
         "eslint": "^9.25.1",
         "tsx": "^4.19.4",
         "typescript": "^5.8.3",
+        "valibot": "^1.0.0",
         "vite": "^6.3.4"
     },
     "dependencies": {
@@ -43,8 +45,7 @@
         "@babel/types": "^7.27.1",
         "@lesnoypudge/utils": "^19.5.2",
         "@typescript-eslint/parser": "^8.31.1",
-        "@typescript-eslint/utils": "^8.31.1",
-        "valibot": "^1.0.0"
+        "@typescript-eslint/utils": "^8.31.1"
     },
     "peerDependencies": {
         "eslint": ">=9.0.0"

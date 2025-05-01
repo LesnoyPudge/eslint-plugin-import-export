@@ -1,24 +1,14 @@
 import { ESLintUtils, TSESLint } from '@typescript-eslint/utils';
-import fs from 'node:fs';
-import path from 'node:path';
-import * as v from 'valibot';
+import { name, version } from '../generated/package';
 
-
-
-export const pkg = v.parse(v.object({
-    name: v.string(),
-    version: v.string(),
-}), JSON.parse(
-    fs.readFileSync(path.resolve(process.cwd(), 'package.json'), 'utf8'),
-));
 
 export const createRule = ESLintUtils.RuleCreator(() => {
     return 'https://github.com/LesnoyPudge/eslint-plugin-import-export';
 });
 
-export const pluginName = pkg.name;
+export const pluginName = name;
 
-export const pluginVersion = pkg.version;
+export const pluginVersion = version;
 
 export const ruleName = 'import-export';
 
