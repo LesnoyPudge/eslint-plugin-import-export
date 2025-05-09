@@ -24,9 +24,9 @@ const ruleMeta: ESLintUtils.NamedCreateRuleMeta<keyof MessageIds> = {
             Import/Export is shorter then specified length.
         `),
     },
-    type: 'suggestion',
+    type: 'layout',
     schema: [],
-    fixable: 'code',
+    fixable: 'whitespace',
 };
 
 export const rule = createRule({

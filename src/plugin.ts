@@ -24,12 +24,12 @@ const recommendedFlatConfig = {
     },
     plugins: {} as TSESLint.FlatConfig.Plugins,
     rules: {
-        '@lesnoypudge/eslint-plugin-import-export/import-export': 'warn',
+        [`@lesnoypudge/eslint-plugin-${ruleName}/${ruleName}`]: 'warn',
     },
 } satisfies TSESLint.FlatConfig.Config;
 
 Object.assign(recommendedFlatConfig.plugins, {
-    '@lesnoypudge/eslint-plugin-import-export': plugin,
+    [`@lesnoypudge/eslint-plugin-${ruleName}`]: plugin,
 });
 
 const configs = {

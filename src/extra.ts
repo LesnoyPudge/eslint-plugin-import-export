@@ -3,15 +3,15 @@ import { name, version } from './package';
 
 
 
+export const ruleName = 'import-export';
+
 export const createRule = ESLintUtils.RuleCreator(() => {
-    return 'https://github.com/LesnoyPudge/eslint-plugin-import-export';
+    return `https://github.com/LesnoyPudge/eslint-plugin-${ruleName}`;
 });
 
 export const pluginName = name;
 
 export const pluginVersion = version;
-
-export const ruleName = 'import-export';
 
 export const messageIds = {
     shortMultiline: 'shortMultiline',
