@@ -186,101 +186,115 @@ export const ruleVisitors: RuleVisitors = (context) => {
         };
     };
 
+    const handleImportDeclaration = (node: TSESTree.ImportDeclaration) => {
+        const withSpecifiers = node.specifiers.some((clause) => {
+            return clause.type === tt.ImportSpecifier;
+        });
+
+        // filter out everything that does not
+        // contain named specifiers ({some1, some2})
+        if (!withSpecifiers) return;
+
+        const isExceeds = getIsExceeds(
+            getOneLinerImport(node).length,
+        );
+
+        const {
+            shouldBail,
+            shouldTransformToMultiline,
+            shouldTransformToOneLiner,
+        } = getConditions({ isExceeds, node });
+
+        if (shouldBail) return;
+
+        if (shouldTransformToMultiline) {
+            return context.report({
+                messageId: messageIds.longOneLiner,
+                node,
+                fix: (fixer) => {
+                    return fixer.replaceText(
+                        node,
+                        getMultilineImport(node),
+                    );
+                },
+            });
+        }
+
+        if (shouldTransformToOneLiner) {
+            return context.report({
+                messageId: messageIds.shortMultiline,
+                node,
+                fix: (fixer) => {
+                    return fixer.replaceText(
+                        node,
+                        getOneLinerImport(node),
+                    );
+                },
+            });
+        }
+
+        never();
+    };
+
+    const handleExportNamedDeclaration = (
+        node: TSESTree.ExportNamedDeclaration,
+    ) => {
+        // filter out exports that does not
+        // include specifiers ({ some1, some2 })
+        if (node.declaration !== null) return;
+
+        const isExceeds = getIsExceeds(
+            getOneLinerExport(node).length,
+        );
+
+        const {
+            shouldBail,
+            shouldTransformToMultiline,
+            shouldTransformToOneLiner,
+        } = getConditions({ isExceeds, node });
+
+        if (shouldBail) return;
+
+        if (shouldTransformToMultiline) {
+            return context.report({
+                messageId: messageIds.longOneLiner,
+                node,
+                fix: (fixer) => {
+                    return fixer.replaceText(
+                        node,
+                        getMultilineExport(node),
+                    );
+                },
+            });
+        }
+
+        if (shouldTransformToOneLiner) {
+            return context.report({
+                messageId: messageIds.shortMultiline,
+                node,
+                fix: (fixer) => {
+                    return fixer.replaceText(
+                        node,
+                        getOneLinerExport(node),
+                    );
+                },
+            });
+        }
+
+        never();
+    };
+
     return {
         [tt.ImportDeclaration]: (node) => {
-            const withSpecifiers = node.specifiers.some((clause) => {
-                return clause.type === tt.ImportSpecifier;
-            });
-
-            // filter out everything that does not
-            // contain named specifiers ({some1, some2})
-            if (!withSpecifiers) return;
-
-            const isExceeds = getIsExceeds(
-                getOneLinerImport(node).length,
-            );
-
-            const {
-                shouldBail,
-                shouldTransformToMultiline,
-                shouldTransformToOneLiner,
-            } = getConditions({ isExceeds, node });
-
-            if (shouldBail) return;
-
-            if (shouldTransformToMultiline) {
-                return context.report({
-                    messageId: messageIds.longOneLiner,
-                    node,
-                    fix: (fixer) => {
-                        return fixer.replaceText(
-                            node,
-                            getMultilineImport(node),
-                        );
-                    },
-                });
-            }
-
-            if (shouldTransformToOneLiner) {
-                return context.report({
-                    messageId: messageIds.shortMultiline,
-                    node,
-                    fix: (fixer) => {
-                        return fixer.replaceText(
-                            node,
-                            getOneLinerImport(node),
-                        );
-                    },
-                });
-            }
-
-            never();
+            try {
+                handleImportDeclaration(node);
+            } catch {}
         },
 
         [tt.ExportNamedDeclaration]: (node) => {
-            // filter out exports that does not
-            // include specifiers ({ some1, some2 })
-            if (node.declaration !== null) return;
-
-            const isExceeds = getIsExceeds(
-                getOneLinerExport(node).length,
-            );
-
-            const {
-                shouldBail,
-                shouldTransformToMultiline,
-                shouldTransformToOneLiner,
-            } = getConditions({ isExceeds, node });
-
-            if (shouldBail) return;
-
-            if (shouldTransformToMultiline) {
-                return context.report({
-                    messageId: messageIds.longOneLiner,
-                    node,
-                    fix: (fixer) => {
-                        return fixer.replaceText(
-                            node,
-                            getMultilineExport(node),
-                        );
-                    },
-                });
-            }
-
-            if (shouldTransformToOneLiner) {
-                return context.report({
-                    messageId: messageIds.shortMultiline,
-                    node,
-                    fix: (fixer) => {
-                        return fixer.replaceText(
-                            node,
-                            getOneLinerExport(node),
-                        );
-                    },
-                });
-            }
-
-            never();
+            try {
+                handleExportNamedDeclaration(node);
+            } catch {}
         },
     };
 };
